@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://api.openweathermap.org">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        <i class="fas fa-cloud-sun"></i>
+        Weather Dashboard
+    </h1>
+
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="city"
+            placeholder="Enter city name">
+
+        <button
+            id="searchBtn"
+            onclick="getWeather()">
+
+            <i class="fas fa-search"></i>
+
+        </button>
+
+    </div>
+
+    <!-- Top Buttons -->
+
+    <div class="top-buttons">
+
+        <button id="locationBtn" onclick="getLocationWeather()">
+            📍 My Location
+        </button>
+
+        <button id="themeBtn" onclick="toggleTheme()">
+            🌙 Dark Mode
+        </button>
+
+        <button id="downloadBtn" onclick="downloadReport()">
+            📄 Download PDF
+        </button>
+
+    </div>
+
+    <!-- Search History -->
+
+    <div id="history" class="history"></div>
+
+    <!-- Favourite Cities -->
+
+    <div class="favorite-section">
+
+        <h3>⭐ Favourite Cities</h3>
+
+        <div id="favorites"></div>
+
+    </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader" style="display:none;"></div>
+
+    <!-- Toast -->
+
+    <div id="toast"></div>
+
+    <!-- Current Weather -->
+
+    <div class="weather-card">
+
+        <h2 id="cityName">City</h2>
+
+        <img
+            id="icon"
+            src=""
+            alt="Weather Icon">
+
+        <h1 id="temp">--°C</h1>
+
+        <h3 id="condition">Weather</h3>
+
+        <button
+            id="favoriteBtn"
+            onclick="addFavorite()">
+
+            ⭐ Add To Favorites
+
+        </button>
+
+        <div class="details">
+
+            <div class="detail-box">
+
+                <i class="fas fa-temperature-half"></i>
+
+                <p>Feels Like</p>
+
+                <span id="feels">--°C</span>
+
+            </div>
+
+            <div class="detail-box">
+
+                <i class="fas fa-droplet"></i>
+
+                <p>Humidity</p>
+
+                <span id="humidity">--%</span>
+
+            </div>
+
+            <div class="detail-box">
+
+                <i class="fas fa-wind"></i>
+
+                <p>Wind</p>
+
+                <span id="wind">-- m/s</span>
+
+            </div>
+
+            <div class="detail-box">
+
+                <i class="fas fa-gauge-high"></i>
+
+                <p>Pressure</p>
+
+                <span id="pressure">-- hPa</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Extra Information -->
+
+    <div class="extra-info">
+
+        <div class="extra-card">
+
+            <h3>🌅 Sunrise</h3>
+
+            <p id="sunrise">--:--</p>
+
+        </div>
+
+        <div class="extra-card">
+
+            <h3>🌇 Sunset</h3>
+
+            <p id="sunset">--:--</p>
+
+        </div>
+
+        <div class="extra-card">
+
+            <h3>📅 Date</h3>
+
+            <p id="date">--</p>
+
+        </div>
+
+        <div class="extra-card">
+
+            <h3>⏰ Time</h3>
+
+            <p id="time">--</p>
+
+        </div>
+
+    </div>
+
+    <!-- Air Quality -->
+
+    <div class="aqi-card">
+
+        <h2>
+            🌍 Air Quality Index
+        </h2>
+
+        <h1 id="aqi">
+            --
+        </h1>
+
+        <p id="aqiText">
+            Waiting...
+        </p>
+
+    </div>
+
+    <!-- Temperature Chart -->
+
+    <div class="chart-box">
+
+        <h2>
+
+            📈 Temperature Chart
+
+        </h2>
+
+        <canvas id="tempChart"></canvas>
+
+    </div>
+
+    <!-- Hourly Forecast -->
+
+    <h2 class="forecast-title">
+    ⏰ Hourly Forecast
+    </h2>
+
+    <div id="hourlyForecast" class="hourly-container"></div>
+
+
+    <!-- Forecast -->
+
+    <h2 class="forecast-title">
+
+        5-Day Forecast
+
+    </h2>
+
+    <div
+        id="forecast"
+        class="forecast-container">
+
+    </div>
+
+
+    <!-- Weather Alert -->
+
+    <div class="alert-card">
+
+        <h2>⚠ Weather Alert</h2>
+
+        <p id="weatherAlert">
+        No alerts
+        </p>
+
+    </div>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+
+            Developed by
+            <strong>Swetha R</strong>
+
+            ❤️
+
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
